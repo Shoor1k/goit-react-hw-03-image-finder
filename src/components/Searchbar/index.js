@@ -11,10 +11,15 @@ export default class SearchBar extends Component {
         this.setState({
             serchImage: value
         })
+
     }
     onSerchImagesSubmit = (event) => {
         event.preventDefault()
         this.props.onSubmit(this.state.serchImage)
+        this.setState({
+            serchImage: ""
+        })
+
     }
 
     render() {
@@ -30,7 +35,7 @@ export default class SearchBar extends Component {
                     <input
                         onChange={this.onSerchImages}
                         className={s.searchFormInput}
-                        name={serchImage}
+                        value={serchImage}
                         type="text"
                         autoComplete="off"
                         autoFocus

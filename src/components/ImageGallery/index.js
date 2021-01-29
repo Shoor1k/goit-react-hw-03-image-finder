@@ -19,12 +19,14 @@ class ImageGallery extends Component {
         const { largeImg } = this.state;
         const { images } = this.props;
         return (
+            <>
+                <ul className={s.imageGallery} >
 
-            <ul className={s.imageGallery} >
+                    {images.map(image => <ImageGalleryItem image={image} key={image.id} openModal={this.openModal} />)}
 
-                { images.map(image => <ImageGalleryItem image={image} key={image.id} openModal={this.openModal} />)}
-                {largeImg && <Modal url={largeImg} onClose={this.closeModal} />}
-            </ul>
+                </ul>
+                { largeImg && <Modal url={largeImg} onClose={this.closeModal} />}
+            </>
         )
     }
 

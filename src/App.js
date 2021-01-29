@@ -23,7 +23,14 @@ export default class App extends Component {
   componentDidUpdate() {
     if (this.state.isLoading) {
       pixabayApi(this.state.currenSerchImages, this.state.currentPage)
-        .then(this.updateImages).then(this.onScrolWindow)
+        .then(this.updateImages).then(responce => {
+          if (this.state.images.length < 1) {
+            alert(`Image of ${this.state.currenSerchImages} not found`)
+          }
+        }).catch(error => {
+          alert(error);
+          this.setState({ isLoading: false })
+        }).finally(this.onScrolWindow)
     }
 
   }
